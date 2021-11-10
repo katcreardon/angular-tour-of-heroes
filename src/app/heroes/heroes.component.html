@@ -3,17 +3,14 @@
   <li *ngFor="let hero of heroes"
       [class.selected]="hero === selectedHero"
       (click)="onSelect(hero)">
-    <span class="badge">{{hero.id}}</span> {{hero.name}}
+    <span class="badge">{{ hero.id }}</span>{{ hero.name }}
   </li>
 </ul>
 
-<div *ngIf="selectedHero">
-
-  <h2>{{ selectedHero.name | uppercase }} Details</h2>
-  <div><span>{{ selectedHero.id }}</span></div>
-  <div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
-  </div>
-
-</div>
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+<!--HeroesComponent and HeroDetailComponent have a parent/child relationship. HeroesComponent sends HeroDetailComponent
+a new hero to display whenever the user selects a hero from the list.
+[hero]="selectedHero" is a one way property binding from the HeroesComponent.selectedHero property to the
+HeroDetailComponent.hero property.
+When the user clicks a hero in the list, the selectedHero changes and the property binding updates hero and the
+HeroDetailComponent displays the new hero. -->
