@@ -22,9 +22,10 @@ export class HeroesComponent implements OnInit {
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
-
+  // Waits for the Observable to emit the array of heroes. The subscribe() method passes the emitted array to the
+  // callback, which sets the component's heroes property.
   getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
 
 }
