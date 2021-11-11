@@ -35,4 +35,11 @@ export class HeroDetailComponent implements OnInit {
     this.location.back(); // Navigates backward one step in the browser's history stack using the Location service
   }
 
+  save(): void {
+    if (this.hero) {
+      this.heroService.updateHero(this.hero)
+        .subscribe(() => this.goBack());
+    }
+  }
+
 }
